@@ -19,7 +19,7 @@ module.exports = {
     screens: {
       md: '700px',
       lg: '900px',
-      xl: '1050px',
+      xl: '1100px',
     },
     extend: {
       fontFamily: {

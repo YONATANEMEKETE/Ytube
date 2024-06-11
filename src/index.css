@@ -86,4 +86,10 @@
   body {
     @apply bg-background text-foreground;
   }
+  /* .scroll::-webkit-scrollbar {
+    opacity: 0;
+  }
+  .scroll:hover .scroll::-webkit-scrollbar {
+    opacity: 1;
+  } */
 }

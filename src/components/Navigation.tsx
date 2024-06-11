@@ -10,13 +10,25 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { Input } from './ui/input';
+import useSidebar from '@/Store/Store';
 
 const Navigation = () => {
+  const { onOpen } = useSidebar();
+
+  const openSide = () => {
+    onOpen();
+  };
+
   return (
-    <div className="nav fixed top-0 left-0 w-full h-[4rem] ">
+    <div className="nav z-50 fixed top-0 left-0 w-full h-[4rem] bg-white shadow-sm">
       <div className="h-full flex items-center justify-between px-4 lg:px-8 xl:px-12">
         <div className="flex items-center gap-x-4 h-full">
-          <Button variant="ghost" size="icon" className="rounded-full">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="rounded-full"
+            onClick={openSide}
+          >
             <AlignJustify className="size-6 font-semibold text-mysecondary" />
           </Button>
           <div className="flex items-center gap-x-2">
