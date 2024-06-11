@@ -16,8 +16,21 @@ module.exports = {
         '2xl': '1400px',
       },
     },
+    screens: {
+      md: '700px',
+      lg: '900px',
+      xl: '1050px',
+    },
     extend: {
+      fontFamily: {
+        header: 'var(--heading-fonts)',
+        detail: 'var(--detail-fonts)',
+      },
+
       colors: {
+        myprimary: 'var(--myprimary)',
+        mysecondary: 'var(--mysecondary)',
+        myaccent: 'var(--myaccent)',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
