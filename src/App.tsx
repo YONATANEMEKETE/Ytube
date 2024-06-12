@@ -6,9 +6,7 @@ import Videos from './components/Videos';
 function App() {
   return (
     <>
-      <Navigation />
-      <Sidebar />
-      <Videos />
+      <Home />
     </>
   );
 }

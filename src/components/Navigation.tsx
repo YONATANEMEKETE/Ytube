@@ -20,7 +20,7 @@ const Navigation = () => {
   };
 
   return (
-    <div className="nav z-50 fixed top-0 left-0 w-full h-[4rem] bg-white shadow-sm">
+    <div className="nav z-20 fixed top-0 left-0 w-full h-[4rem] bg-white shadow-sm">
       <div className="h-full flex items-center justify-between px-4 lg:px-8 xl:px-12">
         <div className="flex items-center gap-x-4 h-full">
           <Button

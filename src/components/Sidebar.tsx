@@ -26,7 +26,7 @@ const Sidebar = () => {
     <div
       className={`fixed top-0 xl:top-[4rem] ${
         isOpen ? 'left-0' : '-left-[100%] xl:left-0'
-      } h-screen w-max bg-white shadow-lg transition-transform duration-700 xl:shadow-none xl:-z-1 
+      } h-screen w-max bg-white shadow-lg transition-transform duration-700 xl:shadow-none z-30 
         pb-20`}
     >
       <div className="w-full h-max pt-4 flex flex-col gap-y-6">
