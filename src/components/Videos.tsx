@@ -79,6 +79,7 @@ const Videos = () => {
             views={views}
             vidMonth={vidAgo}
             vidDay={vidDay}
+            item={item}
           />
         );
       })}

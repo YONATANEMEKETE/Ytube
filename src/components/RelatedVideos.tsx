@@ -3,24 +3,30 @@ import sampleThumb from '../assets/sampleThumb.jpg';
 import { Button } from './ui/button';
 import { GripVertical } from 'lucide-react';
 
-const RelatedVideos = () => {
+type RelatedProp = {
+  title: string;
+  channelTitle: string;
+  thumb: string;
+};
+
+const RelatedVideos = ({ title, channelTitle, thumb }: RelatedProp): any => {
   return (
     <div
       className="h-[8rem] flex items-start justify-between w-full hover:bg-secondary 
     rounded-lg py-4 px-4 overflow-hidden cursor-pointer"
     >
       <div className="flex items-start gap-x-4">
-        <div className="img w-[10rem] overflow-hidden h-[6rem]">
+        <div className="img w-[10rem]  overflow-hidden h-[6rem]">
           <img
-            src={sampleThumb}
-            className="w-full h-full object-cover object-center  rounded-lg"
+            src={thumb}
+            className="w-full h-full object-cover object-center rounded-lg"
           />
         </div>
-        <div>
+        <div className="w-2/4">
           <div className="font-detail font-bold text-mysecondary mb-1">
-            4 titles of the page
+            {title}
           </div>
-          <div className="font-semibold text-mysecondary">Channel name</div>
+          <div className="font-semibold text-mysecondary">{channelTitle}</div>
           <div className="text-xs font-semibold">124K views 17 days ago</div>
         </div>
       </div>

@@ -1,14 +1,16 @@
 import Home from './Pages/Home';
+import { Route, Routes } from 'react-router-dom';
 import VideoDetail from './Pages/VideoDetail';
-import Navigation from './components/Navigation';
-import Sidebar from './components/Sidebar';
-import Videos from './components/Videos';
 
 function App() {
   return (
     <div className="">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/videos" element={<VideoDetail />} />
+      </Routes>
       {/* <Home /> */}
-      <VideoDetail />
+      {/* <VideoDetail /> */}
     </div>
   );
 }
