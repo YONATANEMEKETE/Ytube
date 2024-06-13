@@ -19,10 +19,17 @@ const VideoCard = ({
   vidMonth,
   vidDay,
 }: CardProp) => {
-  // const viewCount = 0;
-  // if ((views.length = 8)) {
-  //   viewCount = views.charAt(0);
-  // }
+  let viewCount: string | undefined;
+
+  if (views.length == 8) {
+    viewCount = `${views.charAt(0)}${views.charAt(1)}`;
+  } else if (views.length == 7) {
+    viewCount = `${views.charAt(0)}${
+      views.charAt(1) != '0' ? `.${views.charAt(1)}` : ''
+    }${views.charAt(2)}`;
+  } else if (views.length == 6) {
+    viewCount = `${views.charAt(0)}${views.charAt(1)}${views.charAt(2)}`;
+  }
 
   return (
     <div className="w-[25rem] min-[620px]:w-[30rem] min-[800px]:w-[22rem] min-[1300px]:w-[20rem] h-max mx-auto">
@@ -52,7 +59,8 @@ const VideoCard = ({
             {channelName}
           </p>
           <div>
-            80M. {vidMonth != 0 ? vidMonth : vidDay}{' '}
+            {viewCount} {viewCount?.length == 3 ? 'K' : 'M'} {} &#8226; {}{' '}
+            {vidMonth != 0 ? vidMonth : vidDay}{' '}
             {vidMonth
               ? `month${vidMonth > 1 ? 's' : ''}`
               : `day${vidDay > 1 ? 's' : ''}`}{' '}

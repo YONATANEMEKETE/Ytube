@@ -4,11 +4,7 @@ import Sidebar from './components/Sidebar';
 import Videos from './components/Videos';
 
 function App() {
-  return (
-    <>
-      <Home />
-    </>
-  );
+  return <>{/* <Home /> */}</>;
 }
 
 export default App;

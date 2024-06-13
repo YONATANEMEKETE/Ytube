@@ -7,8 +7,7 @@ import { DataVids } from '@/Store/Types';
 // const apiKey = process.env.REACT_APP_API_KEY;
 const apiKey = import.meta.env.VITE_SOME_KEY;
 
-const url =
-  'https://youtube-data-api-v33.p.rapidapi.com/videos?part=snippet%2Cid%2Cplayer%2Cstatistics&key=AIzaS9J0K1L2M3N4O5P6Q7R8S9T0U1V2W3X4Y5Z6a7b8c9dTr&chart=mostPopular&maxResults=50&videoCategoryId=15';
+const url = `https://youtube-data-api-v33.p.rapidapi.com/videos?part=snippet%2Cid%2Cplayer%2Cstatistics&key=AIzaS9J0K1L2M3N4O5P6Q7R8S9T0U1V2W3X4Y5Z6a7b8c9dTr&chart=mostPopular&maxResults=50&videoCategoryId=${28}`;
 const options = {
   method: 'GET',
   headers: {
@@ -66,7 +65,7 @@ const Videos = () => {
         const pubDays = pubDate.getDate();
         const views = item.statistics.viewCount;
 
-        console.log(views);
+        // console.log(views);
 
         const vidAgo = date - pubMonth;
         const vidDay = day - pubDays;
