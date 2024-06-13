@@ -12,6 +12,7 @@ type CardProp = {
   vidMonth: number;
   vidDay: number;
   item: Vid;
+  onClick: () => void;
 };
 
 const VideoCard = ({
@@ -22,6 +23,7 @@ const VideoCard = ({
   vidMonth,
   vidDay,
   item,
+  onClick,
 }: CardProp) => {
   let viewCount: string | undefined;
 
@@ -36,7 +38,7 @@ const VideoCard = ({
   }
 
   return (
-    <NavLink to="/videos" state={item}>
+    <NavLink to="/videos" state={item} onClick={onClick}>
       <div className="w-[25rem] min-[620px]:w-[30rem] min-[800px]:w-[22rem] min-[1300px]:w-[20rem] h-max mx-auto">
         <div className="relative w-full h-[50%] overflow-hidden mb-6">
           <img

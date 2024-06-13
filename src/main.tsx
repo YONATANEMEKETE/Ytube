@@ -8,8 +8,8 @@ import { BrowserRouter } from 'react-router-dom';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      gcTime: 1000 * 60,
-      staleTime: 1000 * 60,
+      gcTime: 1000 * 60 * 60,
+      staleTime: 1000 * 60 * 60,
     },
   },
 });

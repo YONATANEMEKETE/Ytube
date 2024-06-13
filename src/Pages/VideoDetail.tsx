@@ -1,6 +1,7 @@
 import Navigation from '@/components/Navigation';
 import React from 'react';
 import sampleThumb from '../assets/sampleThumb.jpg';
+import ReactPlayer from 'react-player';
 import { Avatar, AvatarFallback, AvatarImage } from '../components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -16,6 +17,7 @@ import { useLocation } from 'react-router-dom';
 import { Comments, Vid } from '@/Store/Types';
 import { useQuery } from '@tanstack/react-query';
 import { DataVids } from '@/Store/Types';
+import useFetch from '@/Store/Fetch';
 
 const apiKey = import.meta.env.VITE_SOME_KEY;
 
@@ -38,23 +40,27 @@ const optionsComment = {
 const VideoDetail = () => {
   const location = useLocation();
   const video: Vid = location.state;
+  let urlPlayer = `<https://www.youtube.com/watch?v=${video.id}>`;
 
   const { data, error, isLoading } = useQuery({
-    queryKey: ['vidData'],
-    queryFn: () => fetchVideos(),
+    queryKey: ['vidData', video.snippet.categoryId],
+    queryFn: () => fetchVideos(video.snippet.categoryId),
   });
+
+  const { isFetch } = useFetch();
 
   const {
     data: comData,
     error: comError,
     isLoading: comIsLoading,
   } = useQuery({
-    queryKey: ['comments'],
-    queryFn: () => fetchComments(),
+    queryKey: ['comments', video.id],
+    queryFn: () => fetchComments(video.id),
+    enabled: !!video.id,
   });
 
-  const fetchComments = async (): Promise<Comments | undefined> => {
-    const urlComment = `https://youtube-data-api-v33.p.rapidapi.com/commentThreads?part=snippet%2Cid&key=AIzaS9J0K1L2M3N4O5P6Q7R8S9T0U1V2W3X4Y5Z6a7b8c9dTr&videoId=${video.id}&maxResults=50&order=relevance`;
+  const fetchComments = async (Id: string): Promise<Comments | undefined> => {
+    const urlComment = `https://youtube-data-api-v33.p.rapidapi.com/commentThreads?part=snippet%2Cid&key=AIzaS9J0K1L2M3N4O5P6Q7R8S9T0U1V2W3X4Y5Z6a7b8c9dTr&videoId=${Id}&maxResults=50&order=relevance`;
 
     try {
       const response = await fetch(urlComment, optionsComment);
@@ -65,8 +71,8 @@ const VideoDetail = () => {
     }
   };
 
-  const fetchVideos = async (): Promise<DataVids | undefined> => {
-    const url = `https://youtube-data-api-v33.p.rapidapi.com/videos?part=snippet%2Cid%2Cplayer%2Cstatistics&key=AIzaS9J0K1L2M3N4O5P6Q7R8S9T0U1V2W3X4Y5Z6a7b8c9dTr&chart=mostPopular&maxResults=50&videoCategoryId=${video?.snippet.categoryId}`;
+  const fetchVideos = async (CataID: string): Promise<DataVids | undefined> => {
+    const url = `https://youtube-data-api-v33.p.rapidapi.com/videos?part=snippet%2Cid%2Cplayer%2Cstatistics&key=AIzaS9J0K1L2M3N4O5P6Q7R8S9T0U1V2W3X4Y5Z6a7b8c9dTr&chart=mostPopular&maxResults=50&videoCategoryId=${CataID}`;
     try {
       const response = await fetch(url, options);
       const vids = response.json();
@@ -78,8 +84,6 @@ const VideoDetail = () => {
 
   const videoSuggestions = data?.items;
   const comments = comData?.items;
-
-  console.log(comments);
 
   const likes = video.statistics.likeCount;
   let likesCount: string | undefined;
@@ -129,12 +133,12 @@ const VideoDetail = () => {
       <div className="flex flex-col min-[1100px]:flex-row items-start justify-self-start min-[1100px]:mx-[4rem]">
         <div className="mb-12 min-[1100px]:w-5/6">
           <div className="mt-[6rem] ml-[3rem]  mr-[3rem]  h-max overflow-hidden">
-            {/* {video.player.embedHtml} */}
-            <img
+            <ReactPlayer url={urlPlayer} loop={true} controls={true} />
+            {/* <img
               src={video.snippet.thumbnails.high.url}
               alt="video"
               className="w-full object-cover object-center aspect-video rounded-lg mb-6"
-            />
+            /> */}
 
             <div className="text-2xl text-mysecondary font-header font-semibold mb-4">
               {video.snippet.title}

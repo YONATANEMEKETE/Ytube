@@ -3,6 +3,7 @@ import VideoCard from './ui/VideoCard';
 import { useQuery } from '@tanstack/react-query';
 import { DataTag } from '@tanstack/react-query';
 import { DataVids } from '@/Store/Types';
+import useFetch from '@/Store/Fetch';
 
 // const apiKey = process.env.REACT_APP_API_KEY;
 const apiKey = import.meta.env.VITE_SOME_KEY;
@@ -21,6 +22,8 @@ const Videos = () => {
     queryKey: ['vidData'],
     queryFn: () => fetchVideos(),
   });
+
+  const { onFetch } = useFetch();
 
   const fetchVideos = async (): Promise<DataVids | undefined> => {
     try {
@@ -72,6 +75,7 @@ const Videos = () => {
 
         return (
           <VideoCard
+            onClick={onFetch}
             key={item.id}
             title={item.snippet.title}
             channelName={item.snippet.channelTitle}
