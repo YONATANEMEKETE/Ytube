@@ -1,7 +1,7 @@
 import Navigation from '@/components/Navigation';
 import React from 'react';
 import sampleThumb from '../assets/sampleThumb.jpg';
-import ReactPlayer from 'react-player';
+import ReactPlayer from 'react-player/lazy';
 import { Avatar, AvatarFallback, AvatarImage } from '../components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -18,6 +18,7 @@ import { Comments, Vid } from '@/Store/Types';
 import { useQuery } from '@tanstack/react-query';
 import { DataVids } from '@/Store/Types';
 import useFetch from '@/Store/Fetch';
+import useCategory from '@/Store/CatagoriesStore';
 
 const apiKey = import.meta.env.VITE_SOME_KEY;
 
@@ -133,7 +134,15 @@ const VideoDetail = () => {
       <div className="flex flex-col min-[1100px]:flex-row items-start justify-self-start min-[1100px]:mx-[4rem]">
         <div className="mb-12 min-[1100px]:w-5/6">
           <div className="mt-[6rem] ml-[3rem]  mr-[3rem]  h-max overflow-hidden">
-            <ReactPlayer url={urlPlayer} loop={true} controls={true} />
+            <div className="w-full aspect-video rounded-lg mb-6">
+              <ReactPlayer
+                url={urlPlayer}
+                loop={true}
+                controls={true}
+                style={{ width: '100%' }}
+              />
+            </div>
+
             {/* <img
               src={video.snippet.thumbnails.high.url}
               alt="video"

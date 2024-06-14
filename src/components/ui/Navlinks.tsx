@@ -1,17 +1,22 @@
 import React from 'react';
 import { Button } from './button';
+import useCategory from '@/Store/CatagoriesStore';
 
 type LinkProp = {
   text: string;
   icon: React.ReactNode;
   btn: string;
+  onClick?: () => void;
 };
 
-const Navlinks = ({ text, icon, btn }: LinkProp) => {
+const Navlinks = ({ text, icon, btn, onClick }: LinkProp) => {
+  const { category } = useCategory();
+
   return (
     <div>
       <Button
-        variant={`${btn}`}
+        onClick={onClick}
+        variant={btn}
         size="lg"
         className="w-full flex items-center gap-x-6 justify-start pl-4"
       >

@@ -4,11 +4,11 @@ import { useQuery } from '@tanstack/react-query';
 import { DataTag } from '@tanstack/react-query';
 import { DataVids } from '@/Store/Types';
 import useFetch from '@/Store/Fetch';
+import useCategory from '@/Store/CatagoriesStore';
 
 // const apiKey = process.env.REACT_APP_API_KEY;
 const apiKey = import.meta.env.VITE_SOME_KEY;
 
-const url = `https://youtube-data-api-v33.p.rapidapi.com/videos?part=snippet%2Cid%2Cplayer%2Cstatistics&key=AIzaS9J0K1L2M3N4O5P6Q7R8S9T0U1V2W3X4Y5Z6a7b8c9dTr&chart=mostPopular&maxResults=50&videoCategoryId=${28}`;
 const options = {
   method: 'GET',
   headers: {
@@ -18,14 +18,19 @@ const options = {
 };
 
 const Videos = () => {
+  const { category } = useCategory();
   const { data, error, isLoading } = useQuery({
-    queryKey: ['vidData'],
-    queryFn: () => fetchVideos(),
+    queryKey: ['vidData', category],
+    queryFn: () => fetchVideos(category),
   });
 
   const { onFetch } = useFetch();
 
-  const fetchVideos = async (): Promise<DataVids | undefined> => {
+  const fetchVideos = async (
+    category: number
+  ): Promise<DataVids | undefined> => {
+    const url = `https://youtube-data-api-v33.p.rapidapi.com/videos?part=snippet%2Cid%2Cplayer%2Cstatistics&key=AIzaS9J0K1L2M3N4O5P6Q7R8S9T0U1V2W3X4Y5Z6a7b8c9dTr&chart=mostPopular&maxResults=50&videoCategoryId=${category}`;
+
     try {
       const response = await fetch(url, options);
       const vids = response.json();

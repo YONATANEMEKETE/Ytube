@@ -14,9 +14,11 @@ import {
   Newspaper,
 } from 'lucide-react';
 import useSidebar from '@/Store/Store';
+import useCategory from '@/Store/CatagoriesStore';
 
 const Sidebar = () => {
   const { onClose, isOpen } = useSidebar();
+  const { changeNew } = useCategory();
 
   const closeNav = () => {
     onClose();
@@ -80,21 +82,33 @@ const Sidebar = () => {
         </Button>
         <div className="w-full">
           <Navlinks
+            onClick={() => {
+              changeNew(28);
+            }}
             btn="ghost"
             text="Trending"
             icon={<Flame className="text-lg text-mysecondary font-semibold" />}
           />
           <Navlinks
+            onClick={() => {
+              changeNew(10);
+            }}
             btn="ghost"
             text="Music"
             icon={<Music2 className="text-lg text-mysecondary font-semibold" />}
           />
           <Navlinks
+            onClick={() => {
+              changeNew(1);
+            }}
             btn="ghost"
             text="Live"
             icon={<Radio className="text-lg text-mysecondary font-semibold" />}
           />
           <Navlinks
+            onClick={() => {
+              changeNew(20);
+            }}
             btn="ghost"
             text="Gaming"
             icon={
@@ -102,6 +116,9 @@ const Sidebar = () => {
             }
           />
           <Navlinks
+            onClick={() => {
+              changeNew(25);
+            }}
             btn="ghost"
             text="News"
             icon={
@@ -109,11 +126,17 @@ const Sidebar = () => {
             }
           />
           <Navlinks
+            onClick={() => {
+              changeNew(17);
+            }}
             btn="ghost"
             text="Sport"
             icon={<Trophy className="text-lg text-mysecondary font-semibold" />}
           />
           <Navlinks
+            onClick={() => {
+              changeNew(27);
+            }}
             btn="ghost"
             text="Learning"
             icon={
