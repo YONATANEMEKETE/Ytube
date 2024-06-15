@@ -1,4 +1,4 @@
-#Ytube - youtube website clone
+# Ytube - youtube website clone
 
 this is a youtube website clone with the main functionalities,
 
@@ -7,7 +7,7 @@ we can filter them by categories.
 we can see the details of the each videos. (likes, comments, and related videos)
 ....
 
-#tech stacks
+# tech stacks
 
 - React + Vite
 - Tailwind css with Shadcn Ui
@@ -15,4 +15,4 @@ we can see the details of the each videos. (likes, comments, and related videos)
 - react Query
 - Zustand
 
-#image of the website
+![alt, text](./src/assets/pageShot.png, 'video detail page')
