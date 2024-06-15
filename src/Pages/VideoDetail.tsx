@@ -1,5 +1,5 @@
 import Navigation from '@/components/Navigation';
-import React from 'react';
+import React, { useState } from 'react';
 import sampleThumb from '../assets/sampleThumb.jpg';
 import ReactPlayer from 'react-player/lazy';
 import { Avatar, AvatarFallback, AvatarImage } from '../components/ui/avatar';
@@ -42,13 +42,12 @@ const VideoDetail = () => {
   const location = useLocation();
   const video: Vid = location.state;
   let urlPlayer = `<https://www.youtube.com/watch?v=${video.id}>`;
+  const [more, setMore] = useState(false);
 
   const { data, error, isLoading } = useQuery({
     queryKey: ['vidData', video.snippet.categoryId],
     queryFn: () => fetchVideos(video.snippet.categoryId),
   });
-
-  const { isFetch } = useFetch();
 
   const {
     data: comData,
@@ -244,11 +243,22 @@ const VideoDetail = () => {
                   : `day${vidDay > 1 ? 's' : ''}`}{' '}
                 ago
               </div>
-              <div className="font-semibold leading-snug h-12 overflow-hidden">
+              <div
+                className={`font-semibold leading-snug ${
+                  more ? 'h-max' : 'h-12'
+                } overflow-hidden`}
+              >
                 {video.snippet.description}
               </div>
               {video.snippet.description.length != 0 && (
-                <div className="font-semibold cursor-pointer">...more</div>
+                <div
+                  onClick={() => {
+                    setMore(!more);
+                  }}
+                  className="font-semibold cursor-pointer"
+                >
+                  {more ? '...Less' : '...More'}
+                </div>
               )}
             </div>
           </div>
