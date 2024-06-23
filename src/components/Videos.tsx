@@ -1,7 +1,6 @@
 import React from 'react';
 import VideoCard from './ui/VideoCard';
 import { useQuery } from '@tanstack/react-query';
-import { DataTag } from '@tanstack/react-query';
 import { DataVids } from '@/Store/Types';
 import useFetch from '@/Store/Fetch';
 import useCategory from '@/Store/CatagoriesStore';

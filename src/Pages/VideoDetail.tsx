@@ -1,6 +1,5 @@
 import Navigation from '@/components/Navigation';
 import React, { useState } from 'react';
-import sampleThumb from '../assets/sampleThumb.jpg';
 import ReactPlayer from 'react-player/lazy';
 import { Avatar, AvatarFallback, AvatarImage } from '../components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -41,7 +40,7 @@ const optionsComment = {
 const VideoDetail = () => {
   const location = useLocation();
   const video: Vid = location.state;
-  let urlPlayer = `<https://www.youtube.com/watch?v=${video.id}>`;
+  const urlPlayer = `<https://www.youtube.com/watch?v=${video.id}>`;
   const [more, setMore] = useState(false);
 
   const { data, error, isLoading } = useQuery({
