@@ -16,7 +16,7 @@ const Navlinks = ({ text, icon, btn, onClick }: LinkProp) => {
     <div>
       <Button
         onClick={onClick}
-        variant={btn}
+        variant={'ghost'}
         size="lg"
         className="w-full flex items-center gap-x-6 justify-start pl-4"
       >
